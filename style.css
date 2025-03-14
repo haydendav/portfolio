@@ -1,4 +1,5 @@
-*{
+/* Reset and Global Styles */
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -6,48 +7,50 @@
 }
 
 body {
-    background-color: #000;
-    color: #fff;
+    background-color: #282a36; /* Dracula background */
+    color: #f8f8f2; /* Dracula foreground */
+    transition: background-color 0.3s ease;
+    overflow-x: hidden;
 }
 
-.tab-links::after {
-    background: lightblue;
+/* Hide Scrollbar */
+body::-webkit-scrollbar {
+    display: none;
 }
 
-#header{
+/* Header Section */
+#header {
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
-}
-
-.container{
-    padding: 10px 10%;
     display: flex;
-}
-
-.header-text {
-    margin-top: 25%;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 10%;
 }
 
 .header-text h1 {
-    font-size: 100px;
-    margin-top: 20px;
+    font-size: 60px;
+    color: #8be9fd; /* Consistent light blue text */
 }
 
-/* --- scroll bar --- */
-
-::-webkit-scrollbar {
-    width: 10px;
+/* Navigation Bar */
+nav {
+    text-align: center;
+    padding: 20px;
+}
+nav a {
+    color: #8be9fd; /* Consistent light blue */
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #f8f8f2;
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0); /* Transparent background */
-    border: 1px solid rgba(0, 0, 0, 0); /* Transparent border */
-}
-
-/* --------------about----------------- */ 
-
+/* About Section */
 #about {
     padding: 80px 0;
     color: #ababab;
@@ -57,6 +60,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    margin-left: 80px;
 }
 
 .about-col-1 {
@@ -76,6 +80,12 @@ body {
     font-size: 60px;
     font-weight: 600; 
     color: #fff;
+    margin-left: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-left: 10px;
 }
 
 .tab-titles {
@@ -108,7 +118,7 @@ body {
 
 .tab-contents ul li {
     list-style: none;
-    margin: 10px 0;    
+    margin: 10px;    
 }
 
 .tab-contents ul li span {
@@ -117,117 +127,129 @@ body {
 }
 
 .tab-contents {
-    display: none;
+    display: none; /* Hide all tabs initially */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.tab-contents.active-tab {
+    display: block; /* Show only the active tab */
+    opacity: 1;
+}
+
+/* Ensure Skills Tab is Visible on Load */
+#skills.tab-contents {
+    display: block;
+    opacity: 1;
 }
 
 .tab-contents a {
     color: lightblue;
 }
 
-.tab-contents.active-tab {
-    display: block;
+/* Tabs */
+.tab-titles {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.tab-links {
+    margin: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #8be9fd; /* Consistent light blue */
+    position: relative;
+}
+.tab-links.active-link::after {
+    content: "";
+    width: 50%;
+    height: 3px;
+    background: #8be9fd;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
 }
 
 /* Projects Section */
 #projects {
-    padding: 50px 0 100px;
+    padding: 50px 10%;
+    text-align: center;
 }
-
 .project-grid {
     display: flex;
-    justify-content: space-between;
-}
-
-.project-item {
-    background-color: #ababab9b;
-    border-radius: 10px; 
-    flex: 0 0 calc(25% - 20px); 
-    height: 200px;
-    margin: 30px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    font-size: 24px;
-    transition: all 0.3s ease;
 }
-
+.project-item {
+    background-color: #44475a;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 15px;
+    width: 400px;
+    text-align: center;
+    transition: all 0.3s;
+}
 .project-item:hover {
-    transform: scale(1.1); 
-    background-color: lightblue; 
+    transform: scale(1.05);
+    background-color: #8be9fd;
+    color: #1a1a1a;
 }
 
 /* Contact Section */
-
-#contact form input,
-#contact form textarea {
-    color: rgb(40, 40, 40);
-    background-color: #ffffff;
-    margin-bottom: 20px; 
-    border-radius: 10px;
-    padding-left: 8px;
+#contact {
+    padding: 50px 10%;
+    text-align: center;
 }
-
-#contact form input::placeholder,
-#contact form textarea::placeholder {
-    color: rgb(40, 40, 40); 
-    font-size: 16px; 
+#contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+    margin: auto;
 }
-
-.name-input,
-.email-input {
-    width: 90%; 
-    height: 35px;
-}
-
-.text-input {
-    width: 150%; 
-    height: 120px;
-}
-
-.submit-btn {
-    width: 100px;
-    height: 30px; 
-    background-color: #ffffff;
+#contact input,
+#contact textarea {
+    padding: 12px;
+    margin: 10px 0;
+    background: #44475a;
+    border: none;
     border-radius: 5px;
-    color: rgb(40, 40, 40);
+    color: #f8f8f2;
+}
+#contact .submit-btn {
+    background: #8be9fd; /* Consistent light blue */
+    color: #1a1a1a;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s;
+}
+#contact .submit-btn:hover {
+    background: #6ec2e9;
 }
 
-/* for mobile */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
-    .row {
-        flex-direction: column;
-    }
-    .about-col-1, .about-col-2 {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .tab-titles {
-        display: flex;
-        flex-direction: column;
-    }
-    .tab-links {
-        margin-bottom: 10px;
-    }
-    .tab-contents ul {
-        padding-left: 20px;
+    .header-text h1 {
+        font-size: 40px;
     }
     .project-grid {
-        display: flex;
         flex-direction: column;
+        align-items: center;
     }
     .project-item {
-        margin-bottom: 20px;
+        width: 90%;
     }
-    .name-input, .email-input, .text-input {
+    #contact input, #contact textarea {
         width: 100%;
-        margin-bottom: 10px;
     }
-    .submit-btn {
-        width: 100%;
+    #about {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-col-1, .about-col-2 {
+        flex-basis: 100%;
+        text-align: center;
     }
 }
